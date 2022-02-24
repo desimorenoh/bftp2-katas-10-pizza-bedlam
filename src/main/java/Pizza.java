@@ -1,8 +1,11 @@
+import java.math.BigDecimal;
+import java.util.Locale;
+
 public class Pizza {
     private String name;
-    private double price;
+    private BigDecimal price;
 
-    public Pizza(String name, double price) {
+    public Pizza(String name, BigDecimal price) {
         this.name = name;
         this.price = price;
     }
@@ -15,15 +18,15 @@ public class Pizza {
         this.name = name;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
     public String getTicket() {
-        return String.format("%s   %.2f€\n   _____________________________\n   TOTAL                 %.2f€", name, price, price);
+        return String.format("%s   %.2f€\n   _____________________________\n   TOTAL                 %.2f€", name.toUpperCase(Locale.ROOT), price, price);
     }
 }
