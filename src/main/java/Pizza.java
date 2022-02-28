@@ -2,28 +2,28 @@ import java.math.BigDecimal;
 import java.util.Locale;
 
 public class Pizza {
-    private String name;
-    private BigDecimal price;
+    private static String name;
+    private static BigDecimal price;
 
     public Pizza(String name, BigDecimal price) {
-        this.name = name;
-        this.price = price;
+        Pizza.name = name;
+        Pizza.price = price;
     }
 
-    public String getName() {
+    public static String getName() {
         return name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        Pizza.name = name;
     }
 
-    public BigDecimal getPrice() {
+    public static BigDecimal getPrice() {
         return price;
     }
 
     public void setPrice(BigDecimal price) {
-        this.price = price;
+        Pizza.price = price;
     }
 
     public String getTicket() {

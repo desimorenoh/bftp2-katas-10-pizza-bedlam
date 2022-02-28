@@ -2,27 +2,28 @@ import java.math.BigDecimal;
 
 public class Extras {
 
-    public String getName() {
+    public static String getName() {
         return name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        Extras.name = name;
     }
 
-    public BigDecimal getPrice() {
+    public static BigDecimal getPrice() {
         return price;
     }
 
     public void setPrice(BigDecimal price) {
-        this.price = price;
+        Extras.price = price;
     }
 
-    private String name;
-    private BigDecimal price;
+    private static String name;
+    private static BigDecimal price;
 
     public Extras(String name, BigDecimal price) {
-        this.name = name;
-        this.price = price;
+        Extras.name = name;
+        Extras.price = price;
     }
+
 }

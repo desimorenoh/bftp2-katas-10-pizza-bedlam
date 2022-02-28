@@ -1,4 +1,8 @@
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 
 import java.math.BigDecimal;
 
@@ -6,6 +10,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class PizzaBedlamTest {
+
 
     @Test
     void margheritaTicket() {
@@ -15,9 +20,9 @@ public class PizzaBedlamTest {
         String ticket = margheritaPizza.getTicket();
 
         assertThat(ticket, equalTo(
-                        "MARGHERITA   9,30€\n" +
-                "   _____________________________\n" +
-                "   TOTAL                 9,30€"));
+                "MARGHERITA   9.30€\n" +
+                        "   _____________________________\n" +
+                        "   TOTAL                 9.30€"));
 
     }
     @Test
@@ -28,9 +33,9 @@ public class PizzaBedlamTest {
         String ticket = prosciuttoPizza.getTicket();
 
         assertThat(ticket, equalTo(
-                        "PROSCIUTTO   12,00€\n" +
-                "   _____________________________\n" +
-                "   TOTAL                 12,00€"));
+                "PROSCIUTTO   12.00€\n" +
+                        "   _____________________________\n" +
+                        "   TOTAL                 12.00€"));
 
     }
 
@@ -42,9 +47,9 @@ public class PizzaBedlamTest {
         String ticket = prosciuttoEFunghiPizza.getTicket();
 
         assertThat(ticket, equalTo(
-                "PROSCIUTTO E FUNGHI   12,50€\n" +
+                "PROSCIUTTO E FUNGHI   12.50€\n" +
                         "   _____________________________\n" +
-                        "   TOTAL                 12,50€"));
+                        "   TOTAL                 12.50€"));
 
     }
 
@@ -56,25 +61,41 @@ public class PizzaBedlamTest {
         String ticket = cuatroStagioniPizza.getTicket();
 
         assertThat(ticket, equalTo(
-                "4 STAGIONI   12,50€\n" +
+                "4 STAGIONI   12.50€\n" +
                         "   _____________________________\n" +
-                        "   TOTAL                 12,50€"));
+                        "   TOTAL                 12.50€"));
 
     }
 
     @Test
     void extraIngredientsCanBeAdded(){
+        new Pizza("4 STAGIONI", BigDecimal.valueOf(12.50));
+        new Extras("Ingredientes básicos", BigDecimal.valueOf(0.90));
 
-        Extras ingredientesBasicos = new Extras("Ingredientes Básicos", BigDecimal.valueOf(0.90));
-        Pizza pizza = new Pizza("4 STAGIONI", BigDecimal.valueOf(12.50));
-
-        String ticket = ingredientesBasicos + pizza.getTicket();
+        String ticket = String.valueOf(Ticket.getTicket());
 
         assertThat(ticket, equalTo(
-                "4 STAGIONI   12,50€\n" +
+                "4 STAGIONI   12.50€\n" +
                         "Ingredientes básicos   0.90€\n" +
                         "   _____________________________\n" +
-                        "   TOTAL                 13,40€"));
+                        "   TOTAL                 13.40€"));
+
+    }
+
+    @Test
+    void extraIngredientsCanBeAddedTo(){
+
+        new Pizza("Margherita", BigDecimal.valueOf(9.30));
+        new Extras("Ingredientes básicos", BigDecimal.valueOf(0.90));
+
+
+        String ticket = String.valueOf(Ticket.getTicket());
+
+        assertThat(ticket, equalTo(
+                "MARGHERITA   9.30€\n" +
+                        "Ingredientes básicos   0.90€\n" +
+                        "   _____________________________\n" +
+                        "   TOTAL                 10.20€"));
 
     }
 }
